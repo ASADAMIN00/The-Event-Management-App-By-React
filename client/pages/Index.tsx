@@ -61,8 +61,7 @@ export default function Index() {
     setIsSubmitting(true);
 
     try {
-      // TODO: Implement API call to create booking
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
+      await addBooking(formData);
 
       toast({
         title: "Booking Submitted Successfully! 🎉",
