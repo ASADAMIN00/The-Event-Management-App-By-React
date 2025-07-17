@@ -32,6 +32,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
+import { useBookings } from "@/contexts/BookingContext";
 import { CreateEventBookingRequest, EVENT_TYPES } from "@shared/api";
 
 export default function Index() {
