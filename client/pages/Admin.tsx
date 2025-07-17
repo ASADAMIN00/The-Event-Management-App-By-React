@@ -56,69 +56,17 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
+import { useBookings } from "@/contexts/BookingContext";
 import { EventBooking, EventStatus } from "@shared/api";
-
-// Mock data for demonstration
-const mockBookings: EventBooking[] = [
-  {
-    id: "1",
-    customerName: "Sarah Johnson",
-    customerEmail: "sarah@example.com",
-    customerPhone: "+1 (555) 123-4567",
-    eventType: "Wedding",
-    eventDate: "2024-06-15",
-    eventTime: "18:00",
-    location: "Grand Hotel Ballroom, Downtown",
-    description:
-      "Elegant wedding reception for 150 guests with cocktail hour, dinner, and dancing.",
-    specialInstructions:
-      "Vegetarian and gluten-free options needed. Special lighting for photos.",
-    status: "pending",
-    createdAt: "2024-01-15T10:30:00Z",
-    updatedAt: "2024-01-15T10:30:00Z",
-  },
-  {
-    id: "2",
-    customerName: "Tech Corp Inc.",
-    customerEmail: "events@techcorp.com",
-    customerPhone: "+1 (555) 987-6543",
-    eventType: "Corporate Event",
-    eventDate: "2024-03-20",
-    eventTime: "14:00",
-    location: "Convention Center, Room A",
-    description:
-      "Annual company conference with keynote speakers and networking sessions.",
-    specialInstructions:
-      "A/V equipment needed for presentations. Catering for 200 people.",
-    status: "approved",
-    createdAt: "2024-01-10T14:20:00Z",
-    updatedAt: "2024-01-12T09:15:00Z",
-  },
-  {
-    id: "3",
-    customerName: "Michael Chen",
-    customerEmail: "michael.chen@email.com",
-    customerPhone: "+1 (555) 456-7890",
-    eventType: "Birthday Party",
-    eventDate: "2024-02-28",
-    eventTime: "15:00",
-    location: "Community Center Park",
-    description:
-      "50th birthday celebration with family and friends. Outdoor party with BBQ.",
-    status: "declined",
-    createdAt: "2024-01-08T16:45:00Z",
-    updatedAt: "2024-01-09T11:30:00Z",
-  },
-];
 
 export default function Admin() {
   const { toast } = useToast();
+  const { bookings, updateBookingStatus } = useBookings();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [bookings, setBookings] = useState<EventBooking[]>(mockBookings);
   const [filteredBookings, setFilteredBookings] =
-    useState<EventBooking[]>(mockBookings);
+    useState<EventBooking[]>(bookings);
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedBooking, setSelectedBooking] = useState<EventBooking | null>(
