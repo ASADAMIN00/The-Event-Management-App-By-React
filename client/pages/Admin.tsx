@@ -125,18 +125,7 @@ export default function Admin() {
     newStatus: EventStatus,
   ) => {
     try {
-      // TODO: Implement API call to update status
-      setBookings((prev) =>
-        prev.map((booking) =>
-          booking.id === bookingId
-            ? {
-                ...booking,
-                status: newStatus,
-                updatedAt: new Date().toISOString(),
-              }
-            : booking,
-        ),
-      );
+      await updateBookingStatus(bookingId, newStatus);
 
       toast({
         title: "Status Updated",
