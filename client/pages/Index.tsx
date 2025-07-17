@@ -37,6 +37,7 @@ import { CreateEventBookingRequest, EVENT_TYPES } from "@shared/api";
 
 export default function Index() {
   const { toast } = useToast();
+  const { addBooking } = useBookings();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<CreateEventBookingRequest>({
     customerName: "",
